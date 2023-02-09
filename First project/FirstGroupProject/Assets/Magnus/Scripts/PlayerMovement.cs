@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    [Range(0f, 100f)]
+    [Range(0f, 50f)]
     public int moveSpeed = 1;
 
     [Range(0, 100f)]
