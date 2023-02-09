@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 100f)]
     public int rotationSpeed = 1;
 
+    [Range(0, 100f)]
+    public int jumpForce = 1;
+
 
 
     // Start is called before the first frame update
@@ -43,5 +46,12 @@ public class PlayerMovement : MonoBehaviour
         movementY = movementVector.y;
 
         Debug.Log($"OnMove: {movementValue.Get()}");
+    }
+
+    private void OnJump(InputValue jumpValue) 
+    {
+        Debug.Log($"OnJump: {jumpValue.Get()}");
+        Vector3 jumpVector = new Vector3(0f, jumpValue.Get<float>() * jumpForce, 0f);
+        rb.AddRelativeForce(jumpVector, ForceMode.Impulse);
     }
 }
