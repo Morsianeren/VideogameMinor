@@ -9,11 +9,14 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    [Range(0f, 100f)]
+    [Range(0f, 50f)]
     public int moveSpeed = 1;
 
     [Range(0, 100f)]
     public int rotationSpeed = 1;
+
+    [Range(0, 100f)]
+    public int jumpForce = 1;
 
 
 
@@ -43,5 +46,12 @@ public class PlayerMovement : MonoBehaviour
         movementY = movementVector.y;
 
         Debug.Log($"OnMove: {movementValue.Get()}");
+    }
+
+    private void OnJump(InputValue jumpValue) 
+    {
+        Debug.Log($"OnJump: {jumpValue.Get()}");
+        Vector3 jumpVector = new Vector3(0f, jumpValue.Get<float>() * jumpForce, 0f);
+        rb.AddRelativeForce(jumpVector, ForceMode.Impulse);
     }
 }
